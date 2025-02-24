@@ -119,7 +119,7 @@ const signup = async () => {
                 type: "plain_text",
                 text: "yes, looks good!",
               },
-              value: "yes",
+              value: password as string,
               style: "primary",
               action_id: "make-account",
             },
@@ -138,12 +138,71 @@ const signup = async () => {
     });
   });
 
-  slackApp.action("make-account", async ({ context }) => {
-    if (context?.respond)
-      await context.respond({
-        response_type: "ephemeral",
-        text: `great! your account has been created :yay:\n\nsign in at <https://waka.hackclub.com/login|hackatime> with your username \`${context.userId}\` and the password you just set up!`,
-      });
+  slackApp.action("make-account", async ({ context, payload }) => {
+    if (!context?.respond) return;
+    if (!context.client.users) return;
+
+    const user = (
+      await context.client.users.info({ user: context.userId as string })
+    ).user;
+
+    if (!user) return;
+
+    const name =
+      user.real_name || user.profile?.display_name || "Anonymous Hacker";
+
+    // @ts-expect-error
+    const password = payload?.actions[0].value;
+
+    const signup: { created: boolean; api_key: string } = await fetch(
+      "https://waka.hackclub.com/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${process.env.HACKATIME_API_KEY}`,
+        },
+        body: new URLSearchParams({
+          location: user.tz as string,
+          username: context.userId as string,
+          name,
+          email: user.profile?.email || "",
+          password: password || "",
+          password_repeat: password || "",
+        }).toString(),
+      },
+    ).then((res) => res.json());
+
+    await context.respond({
+      response_type: "ephemeral",
+      text: "great! your account has been created :yay:",
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "great! your account has been created :yay:",
+          },
+        },
+        { type: "divider" },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `you can now log in to the <https://waka.hackclub.com/login|Hackatime dashboard> with your username \`${context.userId}\` and password \`${password}\` :3c:`,
+          },
+        },
+        {
+          type: "context",
+          elements: [
+            {
+              type: "mrkdwn",
+              text: `your api key for the Hackatime API is \`${signup.api_key}\``,
+            },
+          ],
+        },
+      ],
+    });
   });
 
   slackApp.action("bad-info", async ({ context }) => {
