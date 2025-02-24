@@ -1,7 +1,7 @@
 import { slackApp } from "../index";
 
 const command = async () => {
-  slackApp.command("/hackatime", async ({ context, payload }) => {
+  slackApp.command("/hackatime", async ({ context }) => {
     context.respond({
       response_type: "ephemeral",
       text: "Hi there! I'm the Hackatime bot :hyper-dino-wave:",
@@ -31,6 +31,7 @@ const command = async () => {
               },
               value: "yes",
               style: "primary",
+              action_id: "create-account",
             },
             {
               type: "button",
@@ -39,11 +40,20 @@ const command = async () => {
                 text: "No, thanks",
               },
               value: "no",
+              action_id: "no-thanks",
             },
           ],
         },
       ],
     });
+  });
+
+  slackApp.action("no-thanks", async ({ context }) => {
+    if (context?.respond)
+      await context.respond({
+        response_type: "ephemeral",
+        text: "No worries! If you change your mind just type `/hackatime` again ^-^",
+      });
   });
 };
 
