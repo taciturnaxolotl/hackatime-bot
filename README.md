@@ -25,6 +25,9 @@
 
 Run the `/hackatime` command in the slack and it will prompt you to click a button to create an account if you don't have one, or to reset your password if you do.
 
+![creating an account](/.github/images/create-account-1.webp)
+![creating an account - success](/.github/images/create-account-4.webp)
+
 ## Devving
 
 Create a slack app as per the [manifest.yaml](manifest.yaml) and an env as below  
@@ -46,6 +49,36 @@ then start an ngrok
 ```bash
 ngrok http --domain casual-renewing-reptile.ngrok-free.app 3000
 ```
+
+## Screenshots
+
+Here's what happens when you create a new account:
+
+![creating an account](/.github/images/create-account-1.webp)
+*First you'll see the initial signup prompt*
+
+![cancel creating account](/.github/images/no-worries.webp)
+*No pressure - you can always cancel if you change your mind*
+
+![creating an account - password](/.github/images/create-account-2.webp)
+*Choose a secure password that meets the requirements*
+
+![creating an account - bad password](/.github/images/create-account-null.webp)
+*Make sure to enter a valid password!*
+
+![creating an account - confirm](/.github/images/create-account-3.webp)
+*Confirm your password to make sure it's entered correctly*
+
+![creating an account - success](/.github/images/create-account-4.webp)
+*Success! Your account is now created*
+
+And here's what you'll see if you already have an account:
+
+![has account](/.github/images/has_account.webp)
+*The bot will recognize your existing account*
+
+![resetting a password](/.github/images/reset-password.webp)
+*You can easily reset your password if needed*
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/line-break.svg" />
