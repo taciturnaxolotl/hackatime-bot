@@ -1,11 +1,10 @@
 display_information:
-  name: Kreva
-  description: She comes to haunt your channels (nicely)
-  background_color: "#000000"
-  long_description: Kreva is a small, mischievous Whisperwyrm known for her vibrant blue scales and delicate, starlit wings. Unlike other creatures of her kind, Kreva thrives on social connection, flitting between realms to bring warmth and camaraderie wherever she goes. She has an innate ability to detect newly formed Slack channels, where she immediately appears to say “hi” and ensure no one feels isolated.
+  name: Hackatime Bot
+  description: Your friendly neighborhood bad ass, time tracking, password resetting, slack bot
+  background_color: "#a83236"
 features:
   bot_user:
-    display_name: kreva
+    display_name: hackatime
     always_online: true
 oauth_config:
   scopes:
