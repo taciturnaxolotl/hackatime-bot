@@ -67,15 +67,12 @@ export default {
         }
 
         const message: SlackMessage = await request.json();
-        const { userId, channelId, text } = message;
+        const { channel, text } = message;
 
-        if ((!userId && !channelId) || (userId && channelId) || !text) {
+        if (!channel || !text) {
           return new Response(
             `Invalid fields: ${[
-              !userId &&
-                !channelId &&
-                "must provide either userId or channelId",
-              userId && channelId && "cannot provide both userId and channelId",
+              !channel && "channel is required",
               !text && "text is required",
             ]
               .filter(Boolean)
