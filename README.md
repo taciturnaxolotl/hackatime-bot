@@ -1,16 +1,31 @@
-<h1 align="center">Kreva</h1>
+<h1 align="center">
+    <img src="https://raw.githubusercontent.com/taciturnaxolotl/hackatime-bot/master/.github/images/logo-round.svg" width="200" alt="Logo"/><br/>
+    <img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/transparent.png" height="45" width="0px"/>
+    Hackatime Slack Bot
+    <img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/transparent.png" height="30" width="0px"/>
+</h1>
 
 <p align="center">
-  <img width="460" height="460" src="https://github.com/kcoderhtml/kreva/raw/master/.github/images/logo.png">
+    <i>signup for a hackatime account and get password resets; all on on the hackclub slack!</i>
 </p>
 
-Kreva is a simple slackbot to auto add me to new channels in the [Hackclub](https://hackclub.com/slack/) slack
+<p align="center">
+	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/line-break-thin.svg" />
+</p>
 
----
+<p align="center">
+	<img src="https://raw.githubusercontent.com/taciturnaxolotl/hackatime-bot/master/.github/images/out.gif" />
+</p>
 
-![gif of the program in action](https://github.com/kcoderhtml/kreva/raw/master/.github/images/out.gif)
+<p align="center">
+	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/line-break-thin.svg" />
+</p>
 
-# Usage
+## How do I use it?
+
+Run the `/hackatime` command in the slack and it will prompt you to click a button to create an account if you don't have one, or to reset your password if you do.
+
+## Devving
 
 Create a slack app as per the [manifest.yaml](manifest.yaml) and an env as below  
 
@@ -32,6 +47,14 @@ then start an ngrok
 ngrok http --domain casual-renewing-reptile.ngrok-free.app 3000
 ```
 
-## License
+<p align="center">
+	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/line-break.svg" />
+</p>
 
-_© 2024 Kieran Klukas - Licensed under [AGPL 3.0](LICENSE.md)_  
+<p align="center">
+	<i><code>&copy 2025-present <a href="https://github.com/taciturnaxolotl">Kieran Klukas</a></code></i>
+</p>
+
+<p align="center">
+	<a href="https://github.com/taciturnaxolotl/carriage/blob/master/LICENSE.md"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=AGPL 3.0&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
+</p>
