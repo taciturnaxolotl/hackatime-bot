@@ -32,6 +32,20 @@ const command = async () => {
               },
             },
             {
+              type: "actions",
+              elements: [
+                {
+                  type: "button",
+                  text: {
+                    type: "plain_text",
+                    text: "Reset Password",
+                  },
+                  action_id: "reset-password",
+                  style: "danger",
+                },
+              ],
+            },
+            {
               type: "context",
               elements: [
                 {
