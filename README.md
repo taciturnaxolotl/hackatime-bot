@@ -25,8 +25,10 @@
 
 Run the `/hackatime` command in the slack and it will prompt you to click a button to create an account if you don't have one, or to reset your password if you do.
 
-![creating an account](/.github/images/create-account-1.webp)
-![creating an account - success](/.github/images/create-account-4.webp)
+<p align="center">
+    <img src="/.github/images/create-account-1.webp" width="500" alt="creating an account"/>
+    <img src="/.github/images/has_account.webp" width="500" alt="creating an account - success"/>
+</p>
 
 ## Devving
 
@@ -52,33 +54,42 @@ ngrok http --domain casual-renewing-reptile.ngrok-free.app 3000
 
 ## Screenshots
 
-Here's what happens when you create a new account:
+<details>
+<summary>A bunch of screenshots of all the models</summary>
 
-![creating an account](/.github/images/create-account-1.webp)
-*First you'll see the initial signup prompt*
+#### Initial Signup
 
-![cancel creating account](/.github/images/no-worries.webp)
-*No pressure - you can always cancel if you change your mind*
+Run the `/hackatime` command in slack and it will start the signup process  
 
-![creating an account - password](/.github/images/create-account-2.webp)
-*Choose a secure password that meets the requirements*
+![creating an account](/.github/images/create-account-1.webp)  
+*First you'll see the initial signup prompt*  
 
-![creating an account - bad password](/.github/images/create-account-null.webp)
-*Make sure to enter a valid password!*
+![cancel creating account](/.github/images/no-worries.webp)  
+*No pressure - you can always cancel if you change your mind*  
 
-![creating an account - confirm](/.github/images/create-account-3.webp)
-*Confirm your password to make sure it's entered correctly*
+![creating an account - password](/.github/images/create-account-2.webp)  
+*Choose a secure password that meets the requirements*  
 
-![creating an account - success](/.github/images/create-account-4.webp)
-*Success! Your account is now created*
+![creating an account - bad password](/.github/images/create-account-null.webp)  
+*Make sure to enter a valid password!*  
 
-And here's what you'll see if you already have an account:
+![creating an account - confirm](/.github/images/create-account-3.webp)  
+*Confirm your password to make sure it's entered correctly*  
 
-![has account](/.github/images/has_account.webp)
-*The bot will recognize your existing account*
+![creating an account - success](/.github/images/create-account-4.webp)  
+*Success! Your account is now created*  
 
-![resetting a password](/.github/images/reset-password.webp)
-*You can easily reset your password if needed*
+#### Existing Account
+
+After you've created an account, you can reset your password if needed by again running the `/hackatime` command in slack  
+
+![has account](/.github/images/has_account.webp)  
+*The bot will recognize your existing account*  
+
+![resetting a password](/.github/images/reset-password.webp)  
+*You can easily reset your password if needed*  
+
+</details>
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/master/.github/images/line-break.svg" />
