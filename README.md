@@ -39,6 +39,7 @@ SLACK_BOT_TOKEN=xoxb-xxx-xxxx-xxxxxx
 SLACK_SIGNING_SECRET=xxxxxx
 NODE_ENV=development
 ADMINS=U062UG485EE
+HACKATIME_API_KEY=xxxxxx
 ```
 
 ```bash
