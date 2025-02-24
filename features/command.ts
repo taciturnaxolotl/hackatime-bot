@@ -43,6 +43,14 @@ const command = async () => {
                   action_id: "reset-password",
                   style: "danger",
                 },
+                {
+                  type: "button",
+                  text: {
+                    type: "plain_text",
+                    text: "gutentag!",
+                  },
+                  action_id: "bye",
+                },
               ],
             },
             {
@@ -110,6 +118,14 @@ const command = async () => {
       await context.respond({
         response_type: "ephemeral",
         text: "No worries! If you change your mind just type `/hackatime` again ^-^",
+      });
+  });
+
+  slackApp.action("bye", async ({ context }) => {
+    if (context?.respond)
+      await context.respond({
+        response_type: "ephemeral",
+        text: "bye!!! :goodnight:",
       });
   });
 };
