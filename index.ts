@@ -1,4 +1,5 @@
 import { SlackApp } from "slack-edge";
+import SlackMessageQueue, { type SlackMessage } from "./features/message-queue";
 
 import * as features from "./features/index";
 
@@ -33,6 +34,9 @@ const slackApp = new SlackApp({
 });
 const slackClient = slackApp.client;
 
+const messageQueue = new SlackMessageQueue(slackClient, "data/slack-queue.db");
+console.log(`👔 Message Queue Size: ${await messageQueue.queueLength()}`);
+
 console.log(`⚒️  Loading ${Object.entries(features).length} features...`);
 for (const [feature, handler] of Object.entries(features)) {
   console.log(`📦 ${feature} loaded`);
@@ -54,6 +58,36 @@ export default {
         return new Response("OK");
       case "/slack":
         return slackApp.run(request);
+      case "/slack/message": {
+        if (
+          request.headers.get("Authorization") !==
+          `Bearer ${process.env.API_KEY}`
+        ) {
+          return new Response("Unauthorized", { status: 401 });
+        }
+
+        const message: SlackMessage = await request.json();
+        const { userId, channelId, text } = message;
+
+        if ((!userId && !channelId) || (userId && channelId) || !text) {
+          return new Response(
+            `Invalid fields: ${[
+              !userId &&
+                !channelId &&
+                "must provide either userId or channelId",
+              userId && channelId && "cannot provide both userId and channelId",
+              !text && "text is required",
+            ]
+              .filter(Boolean)
+              .join(", ")}`,
+            { status: 400 },
+          );
+        }
+
+        await messageQueue.enqueue(message);
+
+        return new Response(JSON.stringify({ ok: true }), { status: 200 });
+      }
       default:
         return new Response("404 Not Found", { status: 404 });
     }
