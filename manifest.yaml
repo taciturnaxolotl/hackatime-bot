@@ -6,20 +6,26 @@ features:
   bot_user:
     display_name: hackatime
     always_online: true
+  slash_commands:
+    - command: /hackatime
+      url: https://casual-renewing-reptile.ngrok-free.app/slack
+      description: manage your hackatime account!
+      should_escape: true
 oauth_config:
   scopes:
     bot:
+      - channels:join
       - channels:read
       - chat:write
       - chat:write.public
-      - channels:join
+      - commands
       - users.profile:read
       - users:read
+      - users:read.email
 settings:
-  event_subscriptions:
+  interactivity:
+    is_enabled: true
     request_url: https://casual-renewing-reptile.ngrok-free.app/slack
-    bot_events:
-      - channel_created
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false
