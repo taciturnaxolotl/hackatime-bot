@@ -30,6 +30,59 @@ Run the `/hackatime` command in the slack and it will prompt you to click a butt
     <img src="/.github/images/has_account.webp" width="500" alt="creating an account - success"/>
 </p>
 
+### From a developer's perspective
+
+There is a sweet message queue that is used to handle all hackatime slack messages. This is handled and persisted across restarts with `bun:sqlite`. To access the queue you need an admin token which you can ask me for on slack ([@krn](https://hackclub.slack.com/team/U062UG485EE)).
+
+The queue is interacted with via a `POST` request to `/slack/message` with a `channel`, `text`, and (optionally) `blocks` json encoded in the body.
+
+```bash
+curl -X POST "https://hackatime-bot.kierank.hackclub.app/slack/message" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer NOTLEEKINGTHATLOL" \
+-d '{
+  "channel": "U062UG485EE",
+  "text": "Hello from hackatime!"
+}'
+```
+
+or via fetch with blocks
+
+```typescript
+await fetch("https://hackatime-bot.kierank.hackclub.app/slack/message", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.MESSAGE_QUEUE_TOKEN}`,
+  },
+  body: JSON.stringify({
+    channel: "U062UG485EE",
+    text: "Hello from hackatime!",
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "Hello from hackatime!",
+        },
+      },
+      {
+        type: "divider",
+      },
+      {
+        type: "context",
+        elements: [
+          {
+            type: "mrkdwn",
+            text: "This is a message from the hackatime slack bot!",
+          },
+        ],
+      },
+    ],
+  }),
+});
+```
+
 ## Devving
 
 Create a slack app as per the [manifest.yaml](manifest.yaml) and an env as below  
