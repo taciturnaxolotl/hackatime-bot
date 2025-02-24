@@ -1,0 +1,15 @@
+[Unit]
+Description=Hackatime Bot
+DefaultDependencies=no
+After=network-online.target
+
+[Service]
+Type=exec
+WorkingDirectory=/home/kierank/hackatime-bot
+ExecStart=bun run index.ts
+TimeoutStartSec=0
+Restart=on-failure
+RestartSec=1s
+
+[Install]
+WantedBy=default.target
