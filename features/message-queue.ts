@@ -1,4 +1,5 @@
 import { Database } from "bun:sqlite";
+import { mkdir } from "node:fs/promises";
 import type { Block, SlackAPIClient } from "slack-edge";
 
 export interface SlackMessage {
@@ -23,6 +24,14 @@ export default class SlackMessageQueue {
 
   constructor(slackClient: SlackAPIClient, dbPath = "slack-queue.db") {
     this.slack = slackClient;
+    const dir = dbPath.split("/").slice(0, -1).join("/");
+    if (dir) {
+      try {
+        mkdir(dir);
+      } catch (e) {
+        // Directory may already exist
+      }
+    }
     this.db = new Database(dbPath);
     this.initDatabase();
     this.processQueue();
