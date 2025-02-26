@@ -11,6 +11,8 @@ features:
       url: https://casual-renewing-reptile.ngrok-free.app/slack
       description: manage your hackatime account!
       should_escape: true
+  unfurl_domains:
+    - waka.hackclub.com
 oauth_config:
   scopes:
     bot:
@@ -19,10 +21,16 @@ oauth_config:
       - chat:write
       - chat:write.public
       - commands
+      - links:read
       - users.profile:read
       - users:read
       - users:read.email
+      - links:write
 settings:
+  event_subscriptions:
+    request_url: https://casual-renewing-reptile.ngrok-free.app/slack
+    bot_events:
+      - link_shared
   interactivity:
     is_enabled: true
     request_url: https://casual-renewing-reptile.ngrok-free.app/slack
