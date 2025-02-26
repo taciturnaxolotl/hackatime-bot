@@ -9,7 +9,7 @@ const command = async () => {
           Authorization: `Bearer ${process.env.HACKATIME_API_KEY}`,
         },
       },
-    ).then((res) => (res.status === 404 ? null : res.json()));
+    ).then((res) => (res.status === 200 ? res.json() : null));
 
     if (hackatimeUser) {
       if (context?.respond)
