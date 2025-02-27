@@ -106,8 +106,8 @@ async function codingTime(
   };
 }
 
-async function fetchUserData(
-  user: string,
+export async function fetchUserData(
+  user: string | undefined,
   interval?: string,
 ): Promise<UserData | null> {
   const response = await fetch(
